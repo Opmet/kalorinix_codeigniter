@@ -29,6 +29,8 @@
                <label for="password" class="col-md-1 control-label">Lösenord:</label>
                <div class="col-md-3">
                   <input type="password" name="password" class="form-control" placeholder="Lösenord">
+                  <br />
+                  <p style="float:right;" data-toggle="modal" data-target="#accountModal"><a href="#">Registrera nytt konto.</a></p>
                </div>
             </div>
          </form>

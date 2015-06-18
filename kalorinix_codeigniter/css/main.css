@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+/* Hämtat från ramverk codeigniter */
     ::selection{ background-color: #E13300; color: white; }
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
@@ -68,9 +69,7 @@
  text-decoration: none;
 }
 
-
-
- /* Tabell */
+/* Tabell */
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     width: 100%;

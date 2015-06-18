@@ -46,7 +46,7 @@ class Welcome extends CI_Controller {
 		//Ladda vyn
 		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('modals/login');
-		//$this->load->view('modals/create_new_account');
+		$this->load->view('modals/create_new_account');
 		$this->load->view('/welcome/calorie_counter.php', null);
 		$this->load->view('templates/footer');
 	}
@@ -78,7 +78,7 @@ class Welcome extends CI_Controller {
 		//Ladda vyn
 		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('modals/login');
-		//$this->load->view('modals/create_new_account');
+		$this->load->view('modals/create_new_account');
 		$this->load->view('/welcome/calorie_counter.php', null);
 		$this->load->view('templates/footer');
 		
