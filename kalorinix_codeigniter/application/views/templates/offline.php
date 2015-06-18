@@ -2,8 +2,7 @@
 <!-- 
      Om användaren är utloggad.
 -->
-<a href="<?php echo site_url('account/login'); ?>" class="btn btn-default navbar-btn btn-sm" role="button">
-   <span class="glyphicon glyphicon-log-in"></span> Logga in
-</a>
-      
-  
+
+<button type="button" class="btn btn-default navbar-btn btn-sm" data-toggle="modal" data-target="#loginModal">
+  <span class="glyphicon glyphicon-log-in"></span> Logga in
+</button>

@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <h2>Välkommen till KaloriNix!</h2>
 <div id="body">
 
