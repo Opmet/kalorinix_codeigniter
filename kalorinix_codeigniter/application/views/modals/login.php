@@ -9,16 +9,10 @@
         <h4 class="modal-title" id="loginModalLabel">Logga in</h4>
       </div>
       <div class="modal-body">
-
       
-      
-      
-      
-      
-      
-      
-<div class="container">
-   <form action="<?php echo htmlspecialchars(site_url('account/login')); ?>" method="post" class="form-horizontal">
+      <!-- Form inside modal -->
+      <div class="container">
+         <form action="<?php echo htmlspecialchars(site_url('account/login')); ?>" id="login_form" method="post" class="form-horizontal">
             <div class="form-group">
                <label for="name" class="col-md-1 control-label">Namn:</label>
                <div class="col-md-3">
@@ -34,23 +28,18 @@
                </div>
             </div>
          </form>
-</div>
-      
-      
-      
-      
-      
-      
-      
-      
+      </div>
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
-        <button type="button" class="btn btn-primary">
+        <button type="submit" form="login_form" class="btn btn-primary">
            <span class="glyphicon glyphicon-log-in"></span> Logga in
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- End of file login.php -->
+<!-- Location: ./application/views/modals/login.php -->

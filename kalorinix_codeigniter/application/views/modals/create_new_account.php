@@ -9,20 +9,10 @@
         <h4 class="modal-title" id="accountModalLabel">Registrera nytt konto</h4>
       </div>
       <div class="modal-body">
-
       
-      
-      
-      
-      
-<div class="container">
-      <form action="<?php echo htmlspecialchars(site_url('account/register')); ?>" method="post" class="form-horizontal">
-            <div class="form-group">
-               <label for="name" class="col-md-1 control-label">Namn:</label>
-               <div class="col-md-3">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Namn">
-               </div>
-            </div>
+      <!-- Form inside modal -->
+      <div class="container">
+         <form action="<?php echo htmlspecialchars(site_url('account/register')); ?>" id="account_form" method="post" class="form-horizontal">
             <div class="form-group">
                <label for="email" class="col-md-1 control-label">Epost:</label>
                <div class="col-md-3">
@@ -35,28 +25,22 @@
                   <input type="password" name="password" class="form-control" id="password" placeholder="Lösenord">
                </div>
             </div>
+            <br />
+            <br />
+            <br />
          </form>
-</div>
-      
-      
-      
-      
-      
-
-      
-      
-      
-      
-      
-      
+      </div>
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
-        <button type="button" class="btn btn-primary">
-           <span class="glyphicon glyphicon-log-in"></span> Registrera
+        <button type="submit" form="account_form" class="btn btn-primary">
+           <span style="font-size:0.5em;position:relative;top:-10px;" class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-briefcase"></span> Registrera
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- End of file create_new_account.php -->
+<!-- Location: ./application/views/modals/create_new_account.php -->

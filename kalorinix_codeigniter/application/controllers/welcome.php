@@ -9,7 +9,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 	
 		$this->load->helper('url');
-		//$this->load->database();
+		$this->load->database();
 		$this->load->library('my_session');
 		$this->load->library('my_validation');
 	
@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('modals/login');
 		$this->load->view('modals/create_new_account');
-		$this->load->view('/welcome/calorie_counter.php', null);
+		$this->load->view('welcome/calorie_counter.php', null);
 		$this->load->view('templates/footer');
 	}
 	
@@ -79,7 +79,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('modals/login');
 		$this->load->view('modals/create_new_account');
-		$this->load->view('/welcome/calorie_counter.php', null);
+		$this->load->view('welcome/calorie_counter.php', null);
 		$this->load->view('templates/footer');
 		
 		//$this->_view('welcome/', 'calorie_counter', null);
@@ -121,14 +121,14 @@ class Welcome extends CI_Controller {
 		$pass = False;
 		
 		//Validera
-		$this->form_validation->set_rules('name', 'Konto namn', 'trim|required|min_length[5]|max_length[42]|xss_clean');
-		$this->form_validation->set_rules('email', 'Epost', 'trim|required|min_length[5]|max_length[42]|valid_email|xss_clean');
-		$this->form_validation->set_rules('password', 'Lösenord', 'trim|required|min_length[5]|max_length[42]|xss_clean');
+		$this->form_validation->set_rules('name', 'Konto namn', 'trim|required|min_length[5]|max_length[45]|xss_clean');
+		$this->form_validation->set_rules('email', 'Epost', 'trim|required|min_length[5]|max_length[45]|valid_email|xss_clean');
+		$this->form_validation->set_rules('password', 'Lösenord', 'trim|required|min_length[5]|max_length[45]|xss_clean');
 		
 		//Sätt eventuellt felmeddelande
 		$this->form_validation->set_message('required', 'Fyll i fältet: %s!');
 		$this->form_validation->set_message('min_length', 'Minst 5 tecken lång!');
-		$this->form_validation->set_message('max_length', 'Max 42 tecken lång!');
+		$this->form_validation->set_message('max_length', 'Max 45 tecken lång!');
 		$this->form_validation->set_message('valid_email', 'Fyll i en epost adress!');
 		
 		//Om det finns fel återsänd formulär.
