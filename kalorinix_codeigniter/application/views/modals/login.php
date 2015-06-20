@@ -14,9 +14,9 @@
       <div class="container">
          <form action="<?php echo htmlspecialchars(site_url('account/login')); ?>" id="login_form" method="post" class="form-horizontal">
             <div class="form-group">
-               <label for="name" class="col-md-1 control-label">Namn:</label>
+               <label for="name" class="col-md-1 control-label">Epost:</label>
                <div class="col-md-3">
-                  <input type="name" name="name" class="form-control" placeholder="Namn">
+                  <input type="email" name="email" class="form-control" placeholder="Epost">
                </div>
             </div>
             <div class="form-group">

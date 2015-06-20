@@ -11,8 +11,9 @@
       <div class="modal-body">
       
       <!-- Form inside modal -->
+      <?php echo validation_errors(); ?>
       <div class="container">
-         <form action="<?php echo htmlspecialchars(site_url('account/register')); ?>" id="account_form" method="post" class="form-horizontal">
+         <form action="<?php echo htmlspecialchars(site_url('welcome/create_new_account')); ?>" id="account_form" method="post" class="form-horizontal">
             <div class="form-group">
                <label for="email" class="col-md-1 control-label">Epost:</label>
                <div class="col-md-3">

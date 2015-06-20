@@ -41,7 +41,7 @@
         </div>
         <br />
         <li<?php echo $header_nav_link1; ?>><a href="<?php echo site_url('welcome/about'); ?>">Om</a></li>
-        <li<?php echo $header_nav_link2; ?>><a href="<?php echo site_url('welcome/calorie_counter'); ?>">Kalori räknare</a></li>
+        <li<?php echo $header_nav_link2; ?>><a href="<?php echo site_url('welcome'); ?>">Kalori räknare</a></li>
         <li<?php echo $header_nav_link3; ?>><a href="<?php echo site_url('welcome/mail'); ?>">Kontakt</a></li>
         <?php
            //Starta session om inaktiv.
