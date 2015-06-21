@@ -11,13 +11,15 @@
       <div class="modal-body">
       
       <!-- Form inside modal -->
-      <?php echo validation_errors(); ?>
       <div class="container">
          <form action="<?php echo htmlspecialchars(site_url('welcome/create_new_account')); ?>" id="account_form" method="post" class="form-horizontal">
-            <div class="form-group">
+            
+            <div id="formGroupEmail" class="form-group">
                <label for="email" class="col-md-1 control-label">Epost:</label>
                <div class="col-md-3">
-                  <input type="email" name="email" class="form-control" id="email" placeholder="Epost">
+                  <input type="email" name="email" class="form-control" id="email" aria-describedby="helpBlockEmail" placeholder="Epost">
+                  <span id="glyphiconEmail" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                  <span id="helpBlockEmail" class="help-block hidden"><?php echo form_error('email'); ?></span>
                </div>
             </div>
             <div class="form-group">
