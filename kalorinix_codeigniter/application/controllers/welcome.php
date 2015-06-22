@@ -67,10 +67,54 @@ class Welcome extends CI_Controller {
 			
 			//Sätt eventuellt felmeddelande
 			$this->form_validation->set_message('required', 'Fyll i fältet: %s!');
-			$this->form_validation->set_message('min_length', 'Minst 5 tecken lång!');
-			$this->form_validation->set_message('max_length', 'Max 45 tecken lång!');
-			$this->form_validation->set_message('valid_email', 'Fyll i en epost adress!');
+			$this->form_validation->set_message('min_length', 'Ange minst 5 tecken!');
+			$this->form_validation->set_message('max_length', 'Ange max 45 tecken!');
+			$this->form_validation->set_message('valid_email', 'Fyll i epost adress!');
 			
+			//Om validering påträffar fel.
+			//Annars logga in.
+			if ($this->form_validation->run() == FALSE)
+			{
+				//Skriv ut felen.
+				$this->load->view('templates/header', $this->m_headlab);
+				$this->load->view('modals/login');
+				$this->load->view('modals/create_new_account');
+				$this->load->view('scripts/run_account_script');
+				$this->load->view('welcome/calorie_counter');
+				$this->load->view('templates/footer');
+			}
+			else
+			{
+				//Hämtar variabel
+				$email = $this->my_validation->test_input($_POST["email"]);
+				$password = $this->my_validation->test_input($_POST["password"]);
+					
+				//Modell
+				//$this->load->model('account'); // Laddar modell.
+				//$data = $this->account->get_account($email, $password); // Kör modell
+			}
+		}
+	}
+	
+	/**
+	 * Användaren vill logga in.
+	 * Kallas från modal: ./application/views/modals/login.php
+	 */
+	public function login()
+	{
+		// Om post är aktiv.
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				
+			//Sätt validerings regler
+			$this->form_validation->set_rules('email', 'Epost', 'trim|required|min_length[5]|max_length[45]|valid_email|xss_clean');
+			$this->form_validation->set_rules('password', 'Lösenord', 'trim|required|min_length[5]|max_length[45]|xss_clean');
+				
+			//Sätt eventuellt felmeddelande
+			$this->form_validation->set_message('required', 'Fyll i fältet: %s!');
+			$this->form_validation->set_message('min_length', 'Ange minst 5 tecken!');
+			$this->form_validation->set_message('max_length', 'Ange max 45 tecken!');
+			$this->form_validation->set_message('valid_email', 'Fyll i epost adress!');
+				
 			//Om validering påträffar fel.
 			//Annars skapa ett konto.
 			if ($this->form_validation->run() == FALSE)
@@ -79,7 +123,7 @@ class Welcome extends CI_Controller {
 				$this->load->view('templates/header', $this->m_headlab);
 				$this->load->view('modals/login');
 				$this->load->view('modals/create_new_account');
-				$this->load->view('scripts/run_account_script');
+				$this->load->view('scripts/run_login_script');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}

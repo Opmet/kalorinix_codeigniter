@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<!-- Modal -->
+<!-- Modal account-->
 <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -13,19 +13,20 @@
       <!-- Form inside modal -->
       <div class="container">
          <form action="<?php echo htmlspecialchars(site_url('welcome/create_new_account')); ?>" id="account_form" method="post" class="form-horizontal">
-            
-            <div id="formGroupEmail" class="form-group">
+            <div id="accountGroupEmail" class="form-group">
                <label for="email" class="col-md-1 control-label">Epost:</label>
                <div class="col-md-3">
-                  <input type="email" name="email" class="form-control" id="email" aria-describedby="helpBlockEmail" placeholder="Epost">
-                  <span id="glyphiconEmail" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
-                  <span id="helpBlockEmail" class="help-block hidden"><?php echo form_error('email'); ?></span>
+                  <input type="email" name="email" class="form-control" id="email" aria-describedby="accountBlockEmail" placeholder="Epost" value="<?php echo set_value('email'); ?>">
+                  <span id="accountGlyphEmail" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                  <span id="accountBlockEmail" class="help-block hidden"><?php echo form_error('email'); ?></span>
                </div>
             </div>
-            <div class="form-group">
+            <div id="accountGroupPassword" class="form-group">
                <label for="password" class="col-md-1 control-label">Lösenord:</label>
                <div class="col-md-3">
-                  <input type="password" name="password" class="form-control" id="password" placeholder="Lösenord">
+                  <input type="password" name="password" class="form-control" id="password" aria-describedby="accountBlockPassword" placeholder="Lösenord" value="<?php echo set_value('password'); ?>">
+                  <span id="accountGlyphPassword" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                  <span id="accountBlockPassword" class="help-block hidden"><?php echo form_error('password'); ?></span>
                </div>
             </div>
             <br />

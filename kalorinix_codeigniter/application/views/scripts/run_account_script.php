@@ -1,19 +1,25 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
 /**
- * Startar login och konto modal.
- * @link http://stackoverflow.com/questions/13183630/how-to-open-a-bootstrap-modal-window-using-jquery
+ * Felhantering av formuläret som finns i tillhörande modal.
+ * Modal: application/views/modal/create_new_account.php
  */
 $(document).ready(function(){
 
 	//Om fel finns i fältet epost.
-	if ( $("#helpBlockEmail").text() ) {
-		$( "#formGroupEmail" ).addClass( "has-error has-feedback" );
-		$( "#glyphiconEmail" ).removeClass( "hidden" );
-		$( "#helpBlockEmail" ).removeClass( "hidden" );
+	if ( $("#accountBlockEmail").text() ) {
+		$( "#accountGroupEmail" ).addClass( "has-error has-feedback" );
+		$( "#accountGlyphEmail" ).removeClass( "hidden" );
+		$( "#accountBlockEmail" ).removeClass( "hidden" );
+	}
+
+	//Om fel finns i fältet lösenord.
+	if ( $("#accountBlockPassword").text() ) {
+		$( "#accountGroupPassword" ).addClass( "has-error has-feedback" );
+		$( "#accountGlyphPassword" ).removeClass( "hidden" );
+		$( "#accountBlockPassword" ).removeClass( "hidden" );
 	}
 	
-
 	//Visa modalerna
 	$('#loginModal').modal('show');
 	$('#accountModal').modal('show');
