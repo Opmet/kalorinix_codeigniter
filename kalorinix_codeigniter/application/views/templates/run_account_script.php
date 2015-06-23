@@ -28,4 +28,4 @@ $(document).ready(function(){
 
 
 <!-- End of file run_account_script.php -->
-<!-- Location: ./application/views/scripts/run_account_script.php -->
+<!-- Location: ./application/views/templates/run_account_script.php -->

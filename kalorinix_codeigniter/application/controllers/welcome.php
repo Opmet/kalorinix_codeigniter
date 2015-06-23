@@ -79,7 +79,7 @@ class Welcome extends CI_Controller {
 				$this->load->view('templates/header', $this->m_headlab);
 				$this->load->view('modals/login');
 				$this->load->view('modals/create_new_account');
-				$this->load->view('scripts/run_account_script');
+				$this->load->view('templates/run_account_script');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
@@ -123,7 +123,7 @@ class Welcome extends CI_Controller {
 				$this->load->view('templates/header', $this->m_headlab);
 				$this->load->view('modals/login');
 				$this->load->view('modals/create_new_account');
-				$this->load->view('scripts/run_login_script');
+				$this->load->view('templates/run_login_script');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
