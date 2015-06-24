@@ -8,9 +8,9 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 	
+		$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->database();
-		$this->load->library('my_session');
 		$this->load->library('form_validation');
 		$this->load->library('my_validation');
 	
@@ -44,7 +44,7 @@ class Welcome extends CI_Controller {
 			show_404();
 		}
 		
-		//Ladda vyn
+		//Skriv ut vy.
 		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('modals/login');
 		$this->load->view('modals/create_new_account');
@@ -72,10 +72,10 @@ class Welcome extends CI_Controller {
 			$this->form_validation->set_message('valid_email', 'Fyll i epost adress!');
 			
 			//Om validering påträffar fel.
-			//Annars logga in.
+			//Annars skapa nytt konto och logga in.
 			if ($this->form_validation->run() == FALSE)
 			{
-				//Skriv ut felen.
+				//Skriv ut vy med felen.
 				$this->load->view('templates/header', $this->m_headlab);
 				$this->load->view('modals/login');
 				$this->load->view('modals/create_new_account');
@@ -88,10 +88,17 @@ class Welcome extends CI_Controller {
 				//Hämtar variabel
 				$email = $this->my_validation->test_input($_POST["email"]);
 				$password = $this->my_validation->test_input($_POST["password"]);
-					
+				
 				//Modell
-				//$this->load->model('account'); // Laddar modell.
-				//$data = $this->account->get_account($email, $password); // Kör modell
+				$this->load->model('account'); // Laddar modell.
+				$data = $this->account->set_account($email, $password); // Kör modell
+				
+				//Skriv ut vy.
+				$this->load->view('templates/header', $this->m_headlab);
+				$this->load->view('modals/login');
+				$this->load->view('modals/create_new_account');
+				$this->load->view('welcome/calorie_counter');
+				$this->load->view('templates/footer');
 			}
 		}
 	}
@@ -119,7 +126,7 @@ class Welcome extends CI_Controller {
 			//Annars skapa ett konto.
 			if ($this->form_validation->run() == FALSE)
 			{
-				//Skriv ut felen.
+				//Skriv ut vy med felen.
 				$this->load->view('templates/header', $this->m_headlab);
 				$this->load->view('modals/login');
 				$this->load->view('modals/create_new_account');
@@ -132,10 +139,17 @@ class Welcome extends CI_Controller {
 				//Hämtar variabel
 				$email = $this->my_validation->test_input($_POST["email"]);
 				$password = $this->my_validation->test_input($_POST["password"]);
-					
+				
 				//Modell
-				//$this->load->model('account'); // Laddar modell.
-				//$data = $this->account->set_account($email, $password); // Kör modell
+				$this->load->model('account'); // Laddar modell.
+				$data = $this->account->get_login($email, $password); // Kör modell
+				
+				//Skriv ut vy.
+				$this->load->view('templates/header', $this->m_headlab);
+				$this->load->view('modals/login');
+				$this->load->view('modals/create_new_account');
+				$this->load->view('welcome/calorie_counter');
+				$this->load->view('templates/footer');
 			}
 		}
 	}
@@ -147,29 +161,6 @@ class Welcome extends CI_Controller {
 	public function find_comestible()
 	{
 		$this->_view('welcome_message');
-	}
-	
-	/**
-	 * Kör vyn.
-	 * @param string $p_path Sökväg.
-	 * @param string $p_page Webbsidan som vyn ska rendera.
-	 * @param array $p_data Vy märken.
-	 */
-	private function _view($p_path, $p_page, $p_data)
-	{
-		$data = $p_data; 
-		
-		//Visa 404 om sidan inte finns.
-		if ( ! file_exists(APPPATH.'/views/' . $p_path . $p_page . '.php'))
-		{
-			show_404();
-		}
-		
-	
-		//Ladda vyn
-		$this->load->view('templates/header', $this->m_headlab);
-		$this->load->view($p_path . $p_page , $data);
-		$this->load->view('templates/footer');
 	}
 }
 

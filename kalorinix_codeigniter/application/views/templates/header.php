@@ -44,12 +44,13 @@
         <li<?php echo $header_nav_link2; ?>><a href="<?php echo site_url('welcome'); ?>">Kalori räknare</a></li>
         <li<?php echo $header_nav_link3; ?>><a href="<?php echo site_url('welcome/mail'); ?>">Kontakt</a></li>
         <?php
-           //Starta session om inaktiv.
-           if ( $this->my_session->is_session_started() === FALSE ) session_start();
-               
+        
+           //Hämta session
+           $session = $this->session->all_userdata();
+           
            //Om inloggad
            //Annars utloggad
-           if ( isset($_SESSION['session']) ){
+           if ( isset($session['session']) ){
             require_once( APPPATH.'views/templates/online.php');
            }else{
             require_once( APPPATH.'views/templates/offline.php');
