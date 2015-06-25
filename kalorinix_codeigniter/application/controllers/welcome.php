@@ -155,6 +155,22 @@ class Welcome extends CI_Controller {
 	}
 	
 	/**
+	 * Användaren vill logga ut.
+	 */
+	public function logout()
+	{
+		//Tar bort session.
+		$this->session->unset_userdata('session');
+		
+		//Skriv ut vy.
+		$this->load->view('templates/header', $this->m_headlab);
+		$this->load->view('modals/login');
+		$this->load->view('modals/create_new_account');
+		$this->load->view('welcome/calorie_counter');
+		$this->load->view('templates/footer');
+	}
+	
+	/**
 	 * Hitta matvara.
 	 *
 	 */
