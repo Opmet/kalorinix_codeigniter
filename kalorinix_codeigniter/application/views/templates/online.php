@@ -2,7 +2,10 @@
 <!-- 
      Om användaren är inloggad.
 -->
-<li<?php echo $header_nav_link4; ?>><a href="<?php echo site_url('welcome/accont'); ?>">Inloggad som Mark Otto</a></li>
-<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
-
-<p>Mitt konto</p>
+<li<?php echo $header_nav_link4; ?>>
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mitt konto <span class="caret"></span></a>
+   <ul class="dropdown-menu" role="menu">
+      <li><a href="<?php echo site_url('blog/show_my_page'); ?>"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Inställningar</a></li>
+      <li><a href="<?php echo site_url('blog/show_flow'); ?>"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logga ut</a></li>
+   </ul>
+</li>
