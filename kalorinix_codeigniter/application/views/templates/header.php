@@ -18,7 +18,7 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
     
     <!-- Eget javascript -->
-    <script type="text/javascript" src="<?php echo base_url();?>javascript/main.js" ></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/main.js" ></script> 
   </head>
 <body>
     
