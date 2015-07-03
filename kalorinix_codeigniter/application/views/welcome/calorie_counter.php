@@ -1,11 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-
 <h2>Välkommen till KaloriNix!</h2>
+
+<!-- Body -->
 <div id="body">
 
 <div style="height:30px;"></div>
 
+<!-- Tabell -->
 <div class="row">
   <div class="col-md-5">
     <div class="input-group">
@@ -19,15 +21,14 @@
           <li class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </ul>
-      </div><!-- /btn-group -->
-    </div><!-- /input-group -->
+      </div>
+    </div>
     <div class="collapse" id="dataWell">
          <div class="well">
             <p>Skriv något för att söka.</p>
          </div>
-    </div><!-- /dataWell -->
-  </div><!-- /.col-md-5 -->
-  
+    </div>
+  </div>
   <div class="col-md-7">
      <table id="counter">
      <tr>
@@ -40,7 +41,10 @@
        <td>Morot</td>
        <td>13:00</td>
        <td>100</td>
-       <td></td>
+       <td>
+          <span class="glyphicon glyphicon-pencil blueColor"></span>
+          <span class="glyphicon glyphicon-remove redColor"></span>
+       </td>
      </tr>
      <tr class="alt">
        <td>Jordgubb</td>
@@ -62,16 +66,12 @@
      </tr>
    </table>
    </div>
-</div>
+</div><!-- /Tabell -->
 
-
-
-
-
-
+<!-- Summa -->
 <div class="row">
   <div class="col-md-5">
-  </div><!-- /.col-md-5 -->
+  </div>
   <div class="col-md-7">
 
   <div class="well well-sm">
@@ -79,22 +79,18 @@
   <h3>Resultat</h3>
 <hr>
        <p>
-       Kalori mål: 2500<br />
-       Summa innehåll: 2000<br />
-       Kvar att äta: 500
+       Kalorier: 400<br />
+       Kvar att äta: <span class="redColor">Känner inte till din kalori gräns! (Logga in och gå till inställningarna.)</span>
        </p>
        
    </div>
        
    </div>
-</div>
-
-
-
+</div><!-- /Summa -->
 
 <div style="height:30px;"></div>
 
-<!-- charts -->
+<!-- Charts -->
 <div class="row">
    <div class="col-md-1"></div>
    <div class="col-md-4">
@@ -104,12 +100,9 @@
       <div id="chart_div" style="width: 100%;"></div>
    </div>
    <div class="col-md-1"></div>
-</div><!-- /.row -->
+</div><!-- /Charts -->
 
-
-
-
-</div>
+</div><!-- /Body -->
 
 <!-- End of file calorie_counter.php -->
 <!-- Location: ./application/views/welcome/calorie_counter.php -->
