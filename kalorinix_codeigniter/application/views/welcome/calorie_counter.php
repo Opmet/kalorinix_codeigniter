@@ -15,7 +15,7 @@
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Funktioner <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="#">Action</a></li>
+          <li><a href="#">Skapa ny matvara</a></li>
           <li><a href="#">Lägg till motion</a></li>
           <li><a href="#">Something else here</a></li>
           <li class="divider"></li>
@@ -25,7 +25,7 @@
     </div>
     <div class="collapse" id="dataWell">
          <div class="well">
-            <p>Skriv något för att söka.</p>
+            <p>Skriv för att söka efter matvaror.</p>
          </div>
     </div>
   </div>

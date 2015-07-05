@@ -171,12 +171,21 @@ class Welcome extends CI_Controller {
 	}
 	
 	/**
+	 * Skapa matvara.
+	 *
+	 */
+	public function create_food()
+	{
+		
+	}
+	
+	/**
 	 * Hitta matvara.
 	 *
 	 */
-	public function find_comestible()
+	public function find_food()
 	{
-		$this->_view('welcome_message');
+		
 	}
 }
 
