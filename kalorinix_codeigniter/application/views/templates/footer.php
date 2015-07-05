@@ -2,6 +2,8 @@
 
          <p class="footer">Sidans inskrivningshastighet <strong>{elapsed_time}</strong> sekunder.</p>
       </div>
+      <?php echo $this->load->view('modals/login'); ?>
+      <?php echo $this->load->view('modals/create_new_account'); ?>
    </body>
 </html>
 

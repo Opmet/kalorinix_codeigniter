@@ -46,8 +46,6 @@ class Welcome extends CI_Controller {
 		
 		//Skriv ut vy.
 		$this->load->view('templates/header', $this->m_headlab);
-		$this->load->view('modals/login');
-		$this->load->view('modals/create_new_account');
 		$this->load->view('welcome/calorie_counter');
 		$this->load->view('templates/footer');
 	}
@@ -77,9 +75,7 @@ class Welcome extends CI_Controller {
 			{
 				//Skriv ut vy med felen.
 				$this->load->view('templates/header', $this->m_headlab);
-				$this->load->view('modals/login');
-				$this->load->view('modals/create_new_account');
-				$this->load->view('templates/run_account_script');
+				$this->load->view('run/account_script');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
@@ -95,8 +91,6 @@ class Welcome extends CI_Controller {
 				
 				//Skriv ut vy.
 				$this->load->view('templates/header', $this->m_headlab);
-				$this->load->view('modals/login');
-				$this->load->view('modals/create_new_account');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
@@ -128,9 +122,7 @@ class Welcome extends CI_Controller {
 			{
 				//Skriv ut vy med felen.
 				$this->load->view('templates/header', $this->m_headlab);
-				$this->load->view('modals/login');
-				$this->load->view('modals/create_new_account');
-				$this->load->view('templates/run_login_script');
+				$this->load->view('run/login_script');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
@@ -146,8 +138,6 @@ class Welcome extends CI_Controller {
 				
 				//Skriv ut vy.
 				$this->load->view('templates/header', $this->m_headlab);
-				$this->load->view('modals/login');
-				$this->load->view('modals/create_new_account');
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}
@@ -164,8 +154,6 @@ class Welcome extends CI_Controller {
 		
 		//Skriv ut vy.
 		$this->load->view('templates/header', $this->m_headlab);
-		$this->load->view('modals/login');
-		$this->load->view('modals/create_new_account');
 		$this->load->view('welcome/calorie_counter');
 		$this->load->view('templates/footer');
 	}
@@ -176,7 +164,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function create_food()
 	{
-		
+		//Skriv ut vy.
+		$this->load->view('templates/header', $this->m_headlab);
+		$this->load->view('welcome/calorie_counter');
+		$this->load->view('templates/footer');
 	}
 	
 	/**
