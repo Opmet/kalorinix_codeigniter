@@ -15,7 +15,7 @@
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Funktioner <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href="#">Skapa ny matvara</a></li>
+          <li><a href="<?php echo site_url('welcome/create_food'); ?>">Skapa ny matvara</a></li>
           <li><a href="#">Lägg till motion</a></li>
           <li><a href="#">Something else here</a></li>
           <li class="divider"></li>
@@ -42,8 +42,8 @@
        <td>13:00</td>
        <td>100</td>
        <td>
-          <span class="glyphicon glyphicon-pencil blueColor"></span>
-          <span class="glyphicon glyphicon-remove redColor"></span>
+          <span class="glyphicon glyphicon-edit blueColor"></span>
+          <span class="glyphicon glyphicon-remove-sign redColor"></span>
        </td>
      </tr>
      <tr class="alt">
@@ -80,7 +80,7 @@
 <hr>
        <p>
        Kalorier: 400<br />
-       Kvar att äta: <span class="redColor">Känner inte till din kalori gräns! (Logga in och gå till inställningarna.)</span>
+       Kvar att äta: <span class="redColor">Logga in och gå till inställningarna.</span>
        </p>
        
    </div>

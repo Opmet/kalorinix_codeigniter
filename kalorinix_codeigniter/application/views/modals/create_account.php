@@ -47,4 +47,4 @@
 </div>
 
 <!-- End of file create_new_account.php -->
-<!-- Location: ./application/views/modals/create_new_account.php -->
+<!-- Location: ./application/views/modals/create_account.php -->
