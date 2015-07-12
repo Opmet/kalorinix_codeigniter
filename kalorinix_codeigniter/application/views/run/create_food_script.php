@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
 /**
- * Felhantering av formuläret som finns i tillhörande modal.
+ * Hanterar formuläret som finns i modal create_food_item.
  */
 $(document).ready(function(){
 	
@@ -45,13 +45,42 @@ $(document).ready(function(){
 		$( "#foodGroupOther" ).addClass( "has-error has-feedback" );
 		$( "#foodGlyphOther" ).removeClass( "hidden" );
 		$( "#foodBlockOther" ).removeClass( "hidden" );
-	}
+	}	
+
+	//Skriver ut meddelande om matvaran har sparats i databasen
+	printMessage();
 	
 	//Visa modalen
 	$('#createFoodModal').modal('show');
 });
-</script>
 
+/**
+ * Skriver ut meddelande om matvaran har sparats i databasen
+ */
+function printMessage() {
+	
+	//Conditional php, Om matvaran har sparats i databasen, true annars false.
+	var message = '<?php echo ($message === true ) ? true : false; ?>';
+
+	//Conditional php, Om satt skriv ut annars tom sträng.
+	var food_item = '<?php echo ( isset($food_item) ) ? $food_item : ''; ?>';
+
+	//Om matvaran har sparats i databasen, Skriv ut ett meddelande och tömm fälten.
+	if ( message == true ){
+
+		//Skriv ut meddelande.
+		$("#foodMessage").html( food_item + " har sparats till databasen! Och är nu sökbar." );
+
+		//Töm fälten
+		$("#foodInputFoodItem").val("");
+		$("#foodInputKcal").val("");
+		$("#foodInputProtein").val("");
+		$("#foodInputKolhydrat").val("");
+		$("#foodInputFett").val("");
+		$("#foodInputOther").val("");
+	}
+}
+</script>
 
 <!-- End of file create_food_script.php -->
 <!-- Location: ./application/views/run/create_food_script.php -->

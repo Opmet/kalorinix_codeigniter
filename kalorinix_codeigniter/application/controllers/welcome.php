@@ -164,12 +164,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function create_food()
 	{
+		$data = []; // Tom array.
+		$data['message'] = false; //inget medelande.
+		
 		// Om post är aktiv.
 		// Annars visa vy.
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		
+			
 			//Sätt validerings regler
-			$this->form_validation->set_rules('foodItem', 'Matvara', 'trim|required|max_length[45]|xss_clean');
+			$this->form_validation->set_rules('food_item', 'Matvara', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('kcal', 'Kcal', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('protein', 'Protein', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('kolhydrat', 'Kolhydrat', 'trim|required|numeric|max_length[45]|xss_clean');
@@ -187,37 +190,38 @@ class Welcome extends CI_Controller {
 			//Annars skapa ny matvara.
 			if ($this->form_validation->run() == FALSE)
 			{
+				
 				//Skriv ut vy med felen.
 				$this->load->view('templates/header', $this->m_headlab);
-				$this->load->view('run/create_food_script');
+				$this->load->view('run/create_food_script', $data);
 				$this->load->view('welcome/calorie_counter');
 				$this->load->view('templates/footer');
 			}else {
 				
 				//Hämtar variabel
-				$foodItem = $this->my_validation->test_input($_POST["foodItem"]);
+				$food_item = $this->my_validation->test_input($_POST["food_item"]);
 				$kcal = $this->my_validation->test_input($_POST["kcal"]);
 				$protein = $this->my_validation->test_input($_POST["protein"]);
 				$kolhydrat = $this->my_validation->test_input($_POST["kolhydrat"]);
 				$fett = $this->my_validation->test_input($_POST["fett"]);
 				$other = $this->my_validation->test_input($_POST["other"]);
-		
-				echo 'Test modell: foodItem = ' . $foodItem;
 				
 				//Modell
-				//$this->load->model('account'); // Laddar modell.
-				//$data = $this->account->get_login($email, $password); // Kör modell
+				$this->load->model('food'); // Laddar modell.
+				$data['message'] = $this->food->set_food($food_item, $kcal, $protein, $kolhydrat, $fett, $other); // Kör modell
+				
+				$data['food_item'] = $food_item;
 		
 				//Skriv ut vy.
-				//$this->load->view('templates/header', $this->m_headlab);
-				//$this->load->view('welcome/calorie_counter');
-				//$this->load->view('templates/footer');
+				$this->load->view('templates/header', $this->m_headlab);
+				$this->load->view('run/create_food_script', $data);
+				$this->load->view('welcome/calorie_counter');
+				$this->load->view('templates/footer');
 			}
 		}else{
-			
 			//Skriv ut vy.
 			$this->load->view('templates/header', $this->m_headlab);
-			$this->load->view('run/create_food_script');
+			$this->load->view('run/create_food_script' , $data);
 			$this->load->view('welcome/calorie_counter');
 			$this->load->view('templates/footer');
 		}

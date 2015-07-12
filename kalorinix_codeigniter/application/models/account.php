@@ -22,7 +22,6 @@ class Account extends CI_Model {
 	 */
 	public function set_account($p_email,$p_password)
 	{
-		$message = '';
 		
 		$sql = "INSERT INTO account (email, password)
         VALUES (".$this->db->escape($p_email).", ".$this->db->escape($p_password).")";
@@ -59,6 +58,7 @@ class Account extends CI_Model {
 				
 				// Skapa session.
 				$this->session->set_userdata('session', '1');
+				$this->session->set_userdata('account', $p_email);
 				
 			}else{ show_error($error, 404);}
 				
