@@ -11,7 +11,7 @@
 <div class="row">
   <div class="col-md-5">
     <div class="input-group">
-      <input type="text" class="form-control" aria-label="..." data-toggle="collapse" data-target="#dataWell" aria-expanded="false" aria-controls="collapseExample">
+      <input type="search" id="searchTxt" onkeyup="updateList()" class="form-control" data-toggle="collapse" data-target="#dataWell" aria-expanded="false" aria-controls="collapseExample">
       <div class="input-group-btn">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Funktioner <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -25,7 +25,61 @@
     </div>
     <div class="collapse" id="dataWell">
          <div class="well">
-            <p>Skriv för att söka efter matvaror.</p>
+            <table id="dataTable">
+               <tr id="foodText">
+                  <td>Skriv för att söka efter matvaror.</td>
+               </tr>
+            </table>
+
+
+<script>
+$(document).ready(function(){
+	var timeoutID = false;
+
+	/**
+	 * AJAX med REST, en sekunds fördröjning, hanterar food items från datakällan.
+	 * @link http://www.w3schools.com/jsref/met_win_cleartimeout.asp
+	 */
+	updateList = function() {
+		if(timeoutID){window.clearTimeout(timeoutID);}
+		timeoutID = setTimeout(function(){
+			   $("#foodText").hide();
+			   var param = "/" + document.getElementById("searchTxt").value;
+
+			   //AJAX get json
+			   $.getJSON("<?php echo site_url('welcome/find_food'); ?>" + param)
+				    .done(function( jsonData ) {
+					    var count = 0;
+				    	$.each(jsonData, function(index) {
+				    		var $row = '';
+				            
+				    		$row += '<tr><td id=\"item' + (++count) + '\"><span>';
+				    		$row += jsonData[index].food_item;
+				    		$row += '</span></td></tr>';
+
+				    		$( "#dataTable" ).append( $row );
+
+				    		//Event click handler
+				    		$( "#item" + (count) + "" ).on( "click", {
+					    		id_food: jsonData[index].id_food
+					    		}, sendToTable );
+				        });
+				    });
+			   
+			},1000); //1000 milli sekund.
+    };
+
+    /**
+	 * Event handler, Skickar data till tabellen.
+	 */
+    sendToTable = function( event ) {
+		  alert( "Hello " + event.data.id_food );
+		}
+});
+</script>
+
+
+            
          </div>
     </div>
   </div>

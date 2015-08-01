@@ -49,11 +49,26 @@ class Food extends CI_Model {
 	}
 	
 	/**
-	 * 
+	 * Sökning i databasen.
+	 * @param $p_str En söksträng.
+	 * @return Resultatet
 	 */
-	public function get_food()
+	public function get_food($p_str)
 	{
+		$result = []; // Tom array.
+		$account = $this->session->userdata('account');
 		
+		$sql = "SELECT id_food, food_item FROM food WHERE food_item LIKE " . $this->db->escape($p_str . '%') . "";
+		$query = $this->db->query($sql);
+		
+		if (!$query)
+		{
+			log_message( 'error', "Kunde inte hämta matvaror från databasen! Användarens konto:$account -> " . current_url() );
+		}else {
+			$result = $query->result(); //Spara resultatet i en array.
+		}
+		
+		return $result;
 	}
 	
 }

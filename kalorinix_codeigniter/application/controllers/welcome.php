@@ -229,11 +229,26 @@ class Welcome extends CI_Controller {
 	
 	/**
 	 * Hitta matvara.
+	 * @param $p_search En söksträng.
 	 *
 	 */
-	public function find_food()
+	public function find_food($p_search)
 	{
+		//Validera
+		$str = $this->my_validation->test_input($p_search);
 		
+		//Modell
+		$this->load->model('food'); // Laddar modell.
+		
+		$result = $this->food->get_food($str); // Kör modell
+		
+		//$jsonArray = "{\"records\":" . json_encode($result) . "}";
+		$jsonArray = json_encode($result);
+		
+		echo $jsonArray;
+		//$arr = array('a' => '1', 'b' => '2', 'c' => '3', 'd' => '4', 'e' => '5');
+		//echo json_encode($arr);
+		//echo "{\"records\":['.$arr.']}";
 	}
 }
 
