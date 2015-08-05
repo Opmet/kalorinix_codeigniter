@@ -20,7 +20,7 @@ class Account extends CI_Model {
 	 * @param string $p_email Användarens epost.
 	 * @param string $p_password Användarens lösenord.
 	 */
-	public function set_account($p_email,$p_password)
+	public function create_account($p_email,$p_password)
 	{
 		
 		$sql = "INSERT INTO account (email, password)
@@ -43,7 +43,7 @@ class Account extends CI_Model {
 	 * @param string $p_email Användarens epost.
 	 * @param string $p_password Användarens lösenord.
 	 */
-	public function get_login($p_email,$p_password)
+	public function login($p_email,$p_password)
 	{
 		$error = 'Felaktigt användarnamn och/eller felaktigt lösenord!';
 		

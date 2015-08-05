@@ -87,7 +87,7 @@ class Welcome extends CI_Controller {
 				
 				//Modell
 				$this->load->model('account'); // Laddar modell.
-				$data = $this->account->set_account($email, $password); // Kör modell
+				$data = $this->account->create_account($email, $password); // Kör modell
 				
 				//Skriv ut vy.
 				$this->load->view('templates/header', $this->m_headlab);
@@ -134,7 +134,7 @@ class Welcome extends CI_Controller {
 				
 				//Modell
 				$this->load->model('account'); // Laddar modell.
-				$data = $this->account->get_login($email, $password); // Kör modell
+				$data = $this->account->login($email, $password); // Kör modell
 				
 				//Skriv ut vy.
 				$this->load->view('templates/header', $this->m_headlab);
@@ -208,7 +208,7 @@ class Welcome extends CI_Controller {
 				
 				//Modell
 				$this->load->model('food'); // Laddar modell.
-				$data['message'] = $this->food->set_food($food_item, $kcal, $protein, $kolhydrat, $fett, $other); // Kör modell
+				$data['message'] = $this->food->create_food($food_item, $kcal, $protein, $kolhydrat, $fett, $other); // Kör modell
 				
 				$data['food_item'] = $food_item;
 		
@@ -228,8 +228,9 @@ class Welcome extends CI_Controller {
 	}
 	
 	/**
-	 * Hitta matvara.
+	 * Hitta matvara. 
 	 * @param $p_search En söksträng.
+	 * @return Varor enligt söksträngen.
 	 *
 	 */
 	public function find_food($p_search)
@@ -240,15 +241,9 @@ class Welcome extends CI_Controller {
 		//Modell
 		$this->load->model('food'); // Laddar modell.
 		
-		$result = $this->food->get_food($str); // Kör modell
+		$result = $this->food->find_food($str); // Kör modell
 		
-		//$jsonArray = "{\"records\":" . json_encode($result) . "}";
-		$jsonArray = json_encode($result);
-		
-		echo $jsonArray;
-		//$arr = array('a' => '1', 'b' => '2', 'c' => '3', 'd' => '4', 'e' => '5');
-		//echo json_encode($arr);
-		//echo "{\"records\":['.$arr.']}";
+		echo json_encode($result);
 	}
 }
 

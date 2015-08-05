@@ -25,7 +25,7 @@ class Food extends CI_Model {
 	 * @param string $p_other Övrigt.
 	 * @return boolean $message true om matvaran kunde skrivas in, annars false.
 	 */
-	public function set_food($p_food_item, $p_kcal, $p_protein, $p_kolhydrat, $p_fett, $p_other)
+	public function create_food($p_food_item, $p_kcal, $p_protein, $p_kolhydrat, $p_fett, $p_other)
 	{
 		$message = false;
 		
@@ -53,7 +53,7 @@ class Food extends CI_Model {
 	 * @param $p_str En söksträng.
 	 * @return Resultatet
 	 */
-	public function get_food($p_str)
+	public function find_food($p_str)
 	{
 		$result = []; // Tom array.
 		$account = $this->session->userdata('account');
