@@ -96,11 +96,23 @@
     background-color: #EAF2D3;
 }
 
-/* Color */
+/* Color red */
 .redColor {
     color: red;
 }
 
+/* Color blue */
 .blueColor {
     color: blue;
+}
+
+/* Ställer upp på rät linje */
+.aline {
+    height: 25px;
+    -webkit-box-sizing: border-box;
+}
+
+/* flyter åt vänster */
+.left {
+	float: left;
 }

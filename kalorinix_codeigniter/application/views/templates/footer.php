@@ -5,6 +5,7 @@
       <?php echo $this->load->view('modals/login'); ?>
       <?php echo $this->load->view('modals/create_account'); ?>
       <?php echo $this->load->view('modals/create_food_item'); ?>
+      <?php echo $this->load->view('modals/select_a_entity'); ?>
    </body>
 </html>
 
