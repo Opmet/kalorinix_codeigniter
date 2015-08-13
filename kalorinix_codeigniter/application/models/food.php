@@ -17,21 +17,18 @@ class Food extends CI_Model {
 	 * Skriver in ny matvara i databasen.
 	 *
 	 * @uses session Hämtar info om kontot, för eventuell felhantering.
-	 * @param string $p_food_item 
-	 * @param string $p_kcal 
-	 * @param string $p_protein
-	 * @param string $p_kolhydrat
-	 * @param string $p_fett
-	 * @param string $p_other Övrigt.
+	 * @param array $p_form Data som ska sparas i databasen.
 	 * @return boolean $message true om matvaran kunde skrivas in, annars false.
 	 */
-	public function create_food($p_food_item, $p_kcal, $p_protein, $p_kolhydrat, $p_fett, $p_other)
+	public function create_food( $p_form )
 	{
 		$message = false;
 		
-		$sql = "INSERT INTO food (food_item, kcal, protein, kolhydrat, fett, other)
-        VALUES (".$this->db->escape($p_food_item).", ".$this->db->escape($p_kcal).", ".$this->db->escape($p_protein)."
-        		, ".$this->db->escape($p_kolhydrat).", ".$this->db->escape($p_fett).", ".$this->db->escape($p_other).")";
+		$sql = "INSERT INTO food (food_item, kcal, protein, kolhydrat, fett, other, st, l, dl, msk, tsk, krm)
+        VALUES (".$this->db->escape($p_form['food_item']).", ".$this->db->escape($p_form['kcal']).", ".$this->db->escape($p_form['protein'])."
+        		, ".$this->db->escape($p_form['kolhydrat']).", ".$this->db->escape($p_form['fett']).", ".$this->db->escape($p_form['other'])."
+		        , ".$this->db->escape($p_form['st']).", ".$this->db->escape($p_form['l']).", ".$this->db->escape($p_form['dl'])."
+				, ".$this->db->escape($p_form['msk']).", ".$this->db->escape($p_form['tsk']).", ".$this->db->escape($p_form['krm']).")";
 		
 		$account = $this->session->userdata('account');
 		

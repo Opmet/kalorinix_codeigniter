@@ -68,9 +68,6 @@ function printMessage() {
 	//Om matvaran har sparats i databasen, Skriv ut ett meddelande och tömm fälten.
 	if ( message == true ){
 
-		//Skriv ut meddelande.
-		$("#foodMessage").html( food_item + " har sparats till databasen! Och är nu sökbar." );
-
 		//Töm fälten
 		$("#foodInputFoodItem").val("");
 		$("#foodInputKcal").val("");
@@ -78,6 +75,10 @@ function printMessage() {
 		$("#foodInputKolhydrat").val("");
 		$("#foodInputFett").val("");
 		$("#foodInputOther").val("");
+		
+		//Skriv ut meddelande.
+		$("#foodMessage").html( food_item + " har skapats! Och är nu sökbar." );
+		$("#successMessageFood").removeClass("hidden");
 	}
 }
 </script>

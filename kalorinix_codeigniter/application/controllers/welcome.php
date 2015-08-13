@@ -171,20 +171,26 @@ class Welcome extends CI_Controller {
 		// Annars visa vy.
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
-			//Sätt validerings regler
+			//Sätt validerings regler vara.
 			$this->form_validation->set_rules('food_item', 'Matvara', 'trim|required|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('kcal', 'Kcal', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('protein', 'Protein', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('kolhydrat', 'Kolhydrat', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('fett', 'Fett', 'trim|required|numeric|max_length[45]|xss_clean');
 			$this->form_validation->set_rules('other', 'Övrigt', 'trim|max_length[200]|xss_clean');
-			
+
+			//Sätt validerings regler enhet.
+			$this->form_validation->set_rules('st', 'stycken', 'trim|numeric|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('l', 'Liter', 'trim|numeric|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('dl', 'Deciliter', 'trim|numeric|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('msk', 'Matsked', 'trim|numeric|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('tsk', 'Tesked', 'trim|numeric|max_length[10]|xss_clean');
+			$this->form_validation->set_rules('krm', 'Kryddmått', 'trim|numeric|max_length[10]|xss_clean');
 		
 			//Sätt eventuellt felmeddelande
 			$this->form_validation->set_message('required', 'Fyll i fältet: %s!');
 			$this->form_validation->set_message('min_length', '%s: Ange minst %s tecken!');
 			$this->form_validation->set_message('max_length', '%s: Ange max %s tecken!');
-			$this->form_validation->set_message('numeric', '%s: Fyll i ett nummer!');
 		
 			//Om validering påträffar fel.
 			//Annars skapa ny matvara.
@@ -199,18 +205,28 @@ class Welcome extends CI_Controller {
 			}else {
 				
 				//Hämtar variabel
-				$food_item = $this->my_validation->test_input($_POST["food_item"]);
-				$kcal = $this->my_validation->test_input($_POST["kcal"]);
-				$protein = $this->my_validation->test_input($_POST["protein"]);
-				$kolhydrat = $this->my_validation->test_input($_POST["kolhydrat"]);
-				$fett = $this->my_validation->test_input($_POST["fett"]);
-				$other = $this->my_validation->test_input($_POST["other"]);
+				$form = [];
+				$form['food_item'] = $this->my_validation->test_input($_POST["food_item"]);
+				$form['kcal'] = $this->my_validation->test_input($_POST["kcal"]);
+				$form['protein'] = $this->my_validation->test_input($_POST["protein"]);
+				$form['kolhydrat'] = $this->my_validation->test_input($_POST["kolhydrat"]);
+				$form['fett'] = $this->my_validation->test_input($_POST["fett"]);
+				$form['other'] = $this->my_validation->test_input($_POST["other"]);
+				
+				$form['st'] = $this->my_validation->test_input($_POST["st"]);
+				$form['l'] = $this->my_validation->test_input($_POST["l"]);
+				$form['dl'] = $this->my_validation->test_input($_POST["dl"]);
+				$form['msk'] = $this->my_validation->test_input($_POST["msk"]);
+				$form['tsk'] = $this->my_validation->test_input($_POST["tsk"]);
+				$form['krm'] = $this->my_validation->test_input($_POST["krm"]);
+				//if ( isset( $form['krm'] ) !== true){ $form['krm'] = 0; } // Om inte true sätt 0.
+				
 				
 				//Modell
 				$this->load->model('food'); // Laddar modell.
-				$data['message'] = $this->food->create_food($food_item, $kcal, $protein, $kolhydrat, $fett, $other); // Kör modell
+				$data['message'] = $this->food->create_food( $form ); // Kör modell
 				
-				$data['food_item'] = $food_item;
+				$data['food_item'] = $form['food_item'];
 		
 				//Skriv ut vy.
 				$this->load->view('templates/header', $this->m_headlab);

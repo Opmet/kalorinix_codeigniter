@@ -10,6 +10,11 @@
       </div>
       <div class="modal-body">
       
+      <div id="successMessageFood" class="alert alert-success alert-dismissible hidden" role="alert">
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <strong>Lyckades!</strong> <span id="foodMessage"></span>
+      </div>
+      
       <!-- Form inside modal -->
       <div class="container-fluid">
          <form action="<?php echo htmlspecialchars(site_url('welcome/create_food')); ?>" id="food_form" method="post" class="form-horizontal">
@@ -80,37 +85,37 @@
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 stycken (st):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="st" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 Liter (l):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="l" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 Deciliter (dl):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="dl" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 Matsked (msk):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="msk" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 Tesked (tsk):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="tsk" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="other" class="col-md-4 control-label">1 Kryddmått (krm):</label>
                            <div class="col-md-3">
-                              <input type="text" class="form-control">
+                              <input type="number" name="krm" min="0" max="999" step="0.01" placeholder="0" class="form-control">
                            </div>
                         </div>
                      </form>
