@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <!-- Modal select_a_entity-->
-<div class="modal fade" id="selectEntityModal" tabindex="-1" role="dialog" aria-labelledby="selectEntityModal">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="send_to_table" tabindex="-1">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -13,7 +13,7 @@
          <!-- Form inside modal -->
          <div class="container-fluid">
             <div class="row">
-               <p id="nameSelectModal"></p>
+               <p id="send_to_table_item"></p>
             </div>
             <div class="row">
                <div class="col-md-7">
@@ -21,11 +21,7 @@
                      <input type="text" class="aline left" placeholder="Mängd/Antal">
                   </div>
                   <div>
-                  <select id="selectOptions" class="aline left">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                  <select id="selectTableOptions" class="aline left">
                      </select>
                   </div>
                </div>
