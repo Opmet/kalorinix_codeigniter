@@ -213,13 +213,13 @@ class Welcome extends CI_Controller {
 				$form['fett'] = $this->my_validation->test_input($_POST["fett"]);
 				$form['other'] = $this->my_validation->test_input($_POST["other"]);
 				
+				//Extra enheter
 				$form['st'] = $this->my_validation->test_input($_POST["st"]);
 				$form['l'] = $this->my_validation->test_input($_POST["l"]);
 				$form['dl'] = $this->my_validation->test_input($_POST["dl"]);
 				$form['msk'] = $this->my_validation->test_input($_POST["msk"]);
 				$form['tsk'] = $this->my_validation->test_input($_POST["tsk"]);
 				$form['krm'] = $this->my_validation->test_input($_POST["krm"]);
-				//if ( isset( $form['krm'] ) !== true){ $form['krm'] = 0; } // Om inte true sätt 0.
 				
 				
 				//Modell
@@ -244,7 +244,7 @@ class Welcome extends CI_Controller {
 	}
 	
 	/**
-	 * Hitta matvara. 
+	 * AJAX. Hitta matvara. 
 	 * @param $p_search En söksträng.
 	 * @return Varor enligt söksträngen.
 	 *

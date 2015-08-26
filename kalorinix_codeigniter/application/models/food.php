@@ -25,7 +25,7 @@ class Food extends CI_Model {
 		$message = false;
 		
 		$sql = "INSERT INTO food (food_item, kcal, protein, kolhydrat, fett, other, st, l, dl, msk, tsk, krm)
-        VALUES (".$this->db->escape($p_form['food_item']).", ".$this->db->escape($p_form['kcal']).", ".$this->db->escape($p_form['protein'])."
+        VALUES (". $this->db->escape($p_form['food_item']) .", ".$this->db->escape($p_form['kcal']).", ".$this->db->escape($p_form['protein'])."
         		, ".$this->db->escape($p_form['kolhydrat']).", ".$this->db->escape($p_form['fett']).", ".$this->db->escape($p_form['other'])."
 		        , ".$this->db->escape($p_form['st']).", ".$this->db->escape($p_form['l']).", ".$this->db->escape($p_form['dl'])."
 				, ".$this->db->escape($p_form['msk']).", ".$this->db->escape($p_form['tsk']).", ".$this->db->escape($p_form['krm']).")";
@@ -55,7 +55,7 @@ class Food extends CI_Model {
 		$result = []; // Tom array.
 		$account = $this->session->userdata('account');
 		
-		$sql = "SELECT id_food, food_item FROM food WHERE food_item LIKE " . $this->db->escape($p_str . '%') . "";
+		$sql = "SELECT * FROM food WHERE food_item LIKE " . $this->db->escape($p_str . '%') . "";
 		$query = $this->db->query($sql);
 		
 		if (!$query)
@@ -67,7 +67,6 @@ class Food extends CI_Model {
 		
 		return $result;
 	}
-	
 }
 
 /* End of file food.php */
