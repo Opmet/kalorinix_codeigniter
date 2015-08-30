@@ -1,9 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
+   var path = "<?php echo site_url('welcome/find_food'); ?>";
+   var counter = new calorieCounter( path );
 
-		var path = "<?php echo site_url('welcome/find_food'); ?>";
-		var counter = new calorieCounter( path );
+   //Initierar datapicker.
+   $(function() {
+		  $( "#datepicker" ).datepicker({
+		      showWeek: true,
+		      showAnim: "fold"
+		    });
 
+		  $("#datepicker").datepicker("setDate", new Date()); //Dagens datum
+		  $("#datepicker").datepicker( $.datepicker.regional[ "sv" ] ); //Svenska
+	  });
 </script>
 <h2>Välkommen till KaloriNix!</h2>
 
@@ -36,6 +45,9 @@
     </div>
   </div>
   <div class="col-md-7">
+  
+  <p>Datum: <input type="text" id="datepicker" size="30"></p>
+  
      <table id="counter">
      <tr>
        <th>Matvara</th>

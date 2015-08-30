@@ -1,5 +1,7 @@
 "use strict";
 
+var test = 0;
+
 /**
  * Hanterar hämtning av data från databasen och överlämning till tabellen.
  * @link http://www.w3schools.com/jsref/met_win_cleartimeout.asp
@@ -39,7 +41,7 @@ function calorieCounter(p_path){
 					    		msk: jsonData[index].msk, 
 					    		tsk: jsonData[index].tsk, 
 					    		krm: jsonData[index].krm
-					    		}, sendToTable );
+					    		}, sendToTableModal );
 				        });
 				    });
 			   
@@ -47,7 +49,7 @@ function calorieCounter(p_path){
 		};
 		
 		//Event handler som initierar och visar modalen send_to_table, som skickar data till tabellen.
-	    var sendToTable = function( event ) {
+	    var sendToTableModal = function( event ) {
 
 			  $("#send_to_table_item").text( event.data.food_item + ':' );
 
@@ -83,11 +85,78 @@ function calorieCounter(p_path){
 			  
 			  //Visa modal.
 			  $('#send_to_table').modal('show');
-			};
-    }
+		};
+}
 	
+/**
+ * @link http://www.w3schools.com/jquery/html_hasclass.asp
+ */
+function sendToTable(){
 	
-    
+	//Test
+	this.update = function() {
+		var str_tr = "<tr>";
+		
+		//Om sista tagen inte är markerad. Markera den nya. Varanan tabellrad ska färgläggas.
+		if( !$("#counter").last().hasClass("alt") && test !=1){ str_tr = "<tr class=\"alt\">"; test = 1; }
+		else{ test = 0; }
+		
+		var str = ""
+			+ str_tr
+			  + "<td>Morot</td>"
+			  + "<td>13:00</td>"
+			  + "<td>100</td>"
+			  + "<td>"
+			    + "<span class=\"glyphicon glyphicon-edit blueColor\"></span>"
+			    + "<span class=\"glyphicon glyphicon-remove-sign redColor\"></span>"
+			  + "</td>"
+			+ "</tr>";
+		
+		
+		
+		
+		$("#counter").append( str );
+	};
+	
+}
+	
+/* Swedish initialisation for the jQuery UI date picker plugin. */
+/* Written by Anders Ekdahl ( anders@nomadiz.se). */
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+
+		// AMD. Register as an anonymous module.
+		define([ "../widgets/datepicker" ], factory );
+	} else {
+
+		// Browser globals
+		factory( jQuery.datepicker );
+	}
+}(function( datepicker ) {
+
+datepicker.regional['sv'] = {
+	closeText: 'Stäng',
+	prevText: '&#xAB;Förra',
+	nextText: 'Nästa&#xBB;',
+	currentText: 'Idag',
+	monthNames: ['Januari','Februari','Mars','April','Maj','Juni',
+	'Juli','Augusti','September','Oktober','November','December'],
+	monthNamesShort: ['Jan','Feb','Mar','Apr','Maj','Jun',
+	'Jul','Aug','Sep','Okt','Nov','Dec'],
+	dayNamesShort: ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'],
+	dayNames: ['Söndag','Måndag','Tisdag','Onsdag','Torsdag','Fredag','Lördag'],
+	dayNamesMin: ['Sö','Må','Ti','On','To','Fr','Lö'],
+	weekHeader: 'Ve',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''};
+datepicker.setDefaults(datepicker.regional['sv']);
+
+return datepicker.regional['sv'];
+
+}));
     
     
 

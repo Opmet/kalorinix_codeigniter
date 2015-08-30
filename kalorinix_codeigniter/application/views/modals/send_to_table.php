@@ -1,4 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+<script>
+   var table = new sendToTable();
+</script>
 
 <!-- Modal select_a_entity-->
 <div class="modal fade" id="send_to_table" tabindex="-1">
@@ -10,7 +13,6 @@
       </div>
       <div class="modal-body">
       
-         <!-- Form inside modal -->
          <div class="container-fluid">
             <div class="row">
                <p id="send_to_table_item"></p>
@@ -31,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
-        <button type="submit" form="entity_form" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" onclick="table.update();">
            <span class="glyphicon glyphicon-paste"></span> Skicka
         </button>
       </div>
