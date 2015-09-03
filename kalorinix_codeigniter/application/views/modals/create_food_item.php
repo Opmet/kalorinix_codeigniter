@@ -35,7 +35,7 @@
                         <div id="foodGroupKcal" class="form-group">
                            <label for="kcal" class="col-md-2 control-label">Kcal:</label>
                            <div class="col-md-3">
-                              <input type="number" id="foodInputKcal" min="0" name="kcal" class="form-control" aria-describedby="foodBlockKcal" placeholder="0" value="<?php echo set_value('kcal'); ?>">
+                              <input type="number" id="foodInputKcal" min="0" step="0.01" name="kcal" class="form-control" aria-describedby="foodBlockKcal" placeholder="0" value="<?php echo set_value('kcal'); ?>">
                               <span id="foodGlyphKcal" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                               <span id="foodBlockKcal" class="help-block hidden"><?php echo form_error('kcal'); ?></span>
                            </div>
@@ -43,7 +43,7 @@
                         <div id="foodGroupProtein" class="form-group">
                            <label for="protein" class="col-md-2 control-label">Protein:</label>
                            <div class="col-md-3">
-                              <input type="number" id="foodInputProtein" min="0" name="protein" class="form-control" aria-describedby="foodBlockProtein" placeholder="0" value="<?php echo set_value('protein'); ?>">
+                              <input type="number" id="foodInputProtein" min="0" step="0.01" name="protein" class="form-control" aria-describedby="foodBlockProtein" placeholder="0" value="<?php echo set_value('protein'); ?>">
                               <span id="foodGlyphProtein" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                               <span id="foodBlockProtein" class="help-block hidden"><?php echo form_error('protein'); ?></span>
                            </div>
@@ -51,7 +51,7 @@
                         <div id="foodGroupKolhydrat" class="form-group">
                            <label for="kolhydrat" class="col-md-2 control-label">Kolhydrat:</label>
                            <div class="col-md-3">
-                              <input type="number" id="foodInputKolhydrat" min="0" name="kolhydrat" class="form-control" aria-describedby="foodBlockKolhydrat" placeholder="0" value="<?php echo set_value('kolhydrat'); ?>">
+                              <input type="number" id="foodInputKolhydrat" min="0" step="0.01" name="kolhydrat" class="form-control" aria-describedby="foodBlockKolhydrat" placeholder="0" value="<?php echo set_value('kolhydrat'); ?>">
                               <span id="foodGlyphKolhydrat" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                               <span id="foodBlockKolhydrat" class="help-block hidden"><?php echo form_error('kolhydrat'); ?></span>
                            </div>
@@ -59,7 +59,7 @@
                         <div id="foodGroupFett" class="form-group">
                            <label for="fett" class="col-md-2 control-label">Fett:</label>
                            <div class="col-md-3">
-                              <input type="number" id="foodInputFett" min="0" name="fett" class="form-control" aria-describedby="foodBlockFett" placeholder="0" value="<?php echo set_value('fett'); ?>">
+                              <input type="number" id="foodInputFett" min="0" step="0.01" name="fett" class="form-control" aria-describedby="foodBlockFett" placeholder="0" value="<?php echo set_value('fett'); ?>">
                               <span id="foodGlyphFett" class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                               <span id="foodBlockFett" class="help-block hidden"><?php echo form_error('fett'); ?></span>
                            </div>
