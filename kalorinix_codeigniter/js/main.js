@@ -1,6 +1,7 @@
 "use strict";
 
 var test = 0;
+var parant_json = 0;
 
 /**
  * Hanterar hämtning av data från databasen och överlämning till tabellen.
@@ -20,6 +21,7 @@ function calorieCounter(p_path){
 			   //AJAX get json
 			   $.getJSON(this.path + param)
 				    .done(function( jsonData ) {
+				    	parant_json = jsonData;
 				    	var count = 0;
 					    $( "#dataTable" ).empty();
 				    	$.each(jsonData, function(index) {
@@ -51,6 +53,7 @@ function calorieCounter(p_path){
 		//Event handler som initierar och visar modalen send_to_table, som skickar data till tabellen.
 	    var sendToTableModal = function( event ) {
 
+	    	  $("#hiddenID").text( event.data.id_food );
 			  $("#send_to_table_item").text( event.data.food_item + ':' );
 
 			  $( "#selectOptions" ).empty();
@@ -91,10 +94,22 @@ function calorieCounter(p_path){
 /**
  * @link http://www.w3schools.com/jquery/html_hasclass.asp
  */
-function sendToTable(){
+function Table(){
 	
 	//Test
 	this.update = function() {
+		var id = $('#hiddenID').text();
+		var json = parant_json;
+		var product = find_product(id, json);
+		
+		//alert(id);
+		
+		console.log( JSON.stringify(json) );
+		
+		var d = new Date();
+		var date = d.getHours() + ':' + d.getMinutes();
+		
+		
 		var str_tr = "<tr>";
 		
 		//Om sista tagen inte är markerad. Markera den nya. Varanan tabellrad ska färgläggas.
@@ -103,21 +118,92 @@ function sendToTable(){
 		
 		var str = ""
 			+ str_tr
-			  + "<td>Morot</td>"
-			  + "<td>13:00</td>"
-			  + "<td>100</td>"
+			  + "<td>" + product.food_item + "</td>"
+			  + "<td>" + date + "</td>"
+			  + "<td>" + calc_calories(product) + "</td>"
 			  + "<td>"
 			    + "<span class=\"glyphicon glyphicon-edit blueColor\"></span>"
 			    + "<span class=\"glyphicon glyphicon-remove-sign redColor\"></span>"
 			  + "</td>"
 			+ "</tr>";
 		
-		
-		
-		
 		$("#counter").append( str );
 	};
 	
+	/**
+	 * Sök efter en vara med rätt id.
+	 * 
+	 * @param p_id Id
+	 * @param p_json Samling varor.
+	 * @return En vara
+	 */
+    var find_product = function( p_id, p_json ) {
+    	var product = null;
+    	
+    	//Sök efter varan med rätt id.
+		for (var key in p_json) {
+			if (p_json.hasOwnProperty(key)) {
+				var obj = p_json[key];
+				if(obj.id_food == p_id)
+				{
+					product = obj;//När varan med rätt id hittats.
+				}
+			}
+		}
+		
+		return product;
+	};
+	
+	/**
+	 * Beräkna kalorier
+	 * 
+	 * @param p_product Varan som ska beräknas.
+	 * @return Antal kalorier på en vara.
+	 */
+    var calc_calories = function( p_product ) {
+    	var kcal = p_product.kcal; //kalorier på 100g.
+    	var input = $('#tableSendIn').val();
+    	var selected_entity = $('#selectTableOptions option:selected').val();
+    	
+    	var tot_calories = 0;
+    	
+    	//Användaren kan välja en entitet.
+    	switch (selected_entity) {
+        case "g":
+        	//Hela vikten multipliceras med kallorier och delas slutligen med det hela (100g).
+        	tot_calories = (input * kcal)/100;
+            break;
+        case "st":
+        	//input är x många varor som kallorier ska beräknas på.
+        	//st är vikten på en vara.
+        	//X antal varor multipliceras med gram på en vara
+        	var st = p_product.st; //Gram på en vara.
+        	tot_calories = input * st;
+            break;
+        case "l":
+        	var l = p_product.l; //Gram på en vara.
+        	tot_calories = input * l;
+            break;
+        case "dl":
+        	var dl = p_product.dl; //Gram på en vara.
+        	tot_calories = input * dl;
+            break;
+        case "msk":
+        	var msk = p_product.msk; //Gram på en vara.
+        	tot_calories = input * msk;
+            break;
+        case "tsk":
+        	var tsk = p_product.tsk; //Gram på en vara.
+        	tot_calories = input * tsk;
+            break;
+        case "krm":
+        	var krm = p_product.krm; //Gram på en vara.
+        	tot_calories = input * krm;
+            break;
+    }
+
+    	return tot_calories;
+	};
 }
 	
 /* Swedish initialisation for the jQuery UI date picker plugin. */
