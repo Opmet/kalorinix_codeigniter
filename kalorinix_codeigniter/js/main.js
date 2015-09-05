@@ -109,11 +109,11 @@ function Table(){
 		var date = ('0' + d.getHours() ).slice(-2) + ':' + ('0' + d.getMinutes() ).slice(-2); 
 		
 		
-		var str_tr = "<tr>";
+		var str_tr = "";
 		
 		//Om sista tagen inte är markerad. Markera den nya. Varanan tabellrad ska färgläggas.
-		if( !$("#counter").last().hasClass("alt") && test !=1){ str_tr = "<tr class=\"alt\">"; test = 1; }
-		else{ test = 0; }
+		if( !$("#counter").last().hasClass("alt") && test == 1){ str_tr = "<tr class=\"alt\">"; test = 0; }
+		else{ str_tr = "<tr>"; test = 1; }
 		
 		var str = ""
 			+ str_tr
