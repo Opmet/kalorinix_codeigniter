@@ -102,12 +102,11 @@ function Table(){
 		var json = parant_json;
 		var product = find_product(id, json);
 		
-		//alert(id);
-		
 		console.log( JSON.stringify(json) );
 		
+		//Timmar och minuter med format 09:01
 		var d = new Date();
-		var date = d.getHours() + ':' + d.getMinutes();
+		var date = ('0' + d.getHours() ).slice(-2) + ':' + ('0' + d.getMinutes() ).slice(-2); 
 		
 		
 		var str_tr = "<tr>";
