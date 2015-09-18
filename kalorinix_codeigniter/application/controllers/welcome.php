@@ -261,6 +261,29 @@ class Welcome extends CI_Controller {
 		
 		echo json_encode($result);
 	}
+	
+	
+	Något fungerade inte!<br />
+	Kanske har din dator en äldre webbläsare installerad?<br />
+	Isåfall kan det fungera att ladda hem en ny version.
+	</p>
+	<p>Exempel på webbläsare:
+	<br /><a href="https://www.google.se/chrome/browser/">Google chrome</a>
+	<br /><a href="https://www.mozilla.org/firefox/">Mozilla firefox</a>
+	</p>
+	
+	
+	/**
+	 * Något fungerade inte men webbläsaren.
+	 * Ex: if(!window.indexedDB) Testar om indexedDB stödjs.
+	 */
+	public function not_supported()
+	{
+		//Skriv ut vy.
+		$this->load->view('templates/header', $this->m_headlab);
+		$this->load->view('templates/not_supported');
+		$this->load->view('templates/footer');
+	}
 }
 
 /* End of file welcome.php */
