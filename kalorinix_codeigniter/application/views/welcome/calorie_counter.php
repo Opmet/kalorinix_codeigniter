@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
    var path = "<?php echo site_url('welcome/find_food'); ?>";
-   var counter = new calorieCounter( path );
+   var counter = new CalorieCounter( path );
 
    //Initierar datapicker.
    $(function() {
@@ -50,37 +50,10 @@
   
      <table id="counter">
      <tr>
-       <th>Matvara</th>
+       <th>Vara</th>
        <th>Tid</th>
        <th>Kalorier</th>
        <th>Redigera/Ta bort</th>
-     </tr>
-     <tr>
-       <td>Morot</td>
-       <td>13:00</td>
-       <td>100</td>
-       <td>
-          <span class="glyphicon glyphicon-edit blueColor"></span>
-          <span class="glyphicon glyphicon-remove-sign redColor"></span>
-       </td>
-     </tr>
-     <tr class="alt">
-       <td>Jordgubb</td>
-       <td>13:00</td>
-       <td>100</td>
-       <td></td>
-     </tr>
-     <tr>
-       <td>Poatis</td>
-       <td>13:00</td>
-       <td>100</td>
-       <td></td>
-     </tr>
-     <tr class="alt">
-       <td>Lök</td>
-       <td>13:00</td>
-       <td>100</td>
-       <td></td>
      </tr>
    </table>
    </div>

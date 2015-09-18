@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
-   var table = new Table();
+   var database = new Database();
+   var replace_path = "<?php echo site_url('welcome/not_supported'); ?>"; //Se onclick action nedan.
 </script>
 
 <!-- Modal select_a_entity-->
@@ -34,7 +35,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
-        <button type="button" class="btn btn-primary" onclick="table.update();">
+        <button type="button" class="btn btn-primary" onclick="database.update( replace_path );">
            <span class="glyphicon glyphicon-paste"></span> Skicka
         </button>
       </div>
