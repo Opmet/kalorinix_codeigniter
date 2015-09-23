@@ -263,15 +263,13 @@ class Welcome extends CI_Controller {
 	}
 	
 	/**
-	 * Något fungerade inte men webbläsaren.
+	 * Något fungerade inte med webbläsaren.
 	 * Ex: if(!window.indexedDB) Testar om indexedDB stödjs.
 	 */
 	public function not_supported()
 	{
 		//Skriv ut vy.
-		$this->load->view('templates/header', $this->m_headlab);
 		$this->load->view('templates/not_supported');
-		$this->load->view('templates/footer');
 	}
 }
 

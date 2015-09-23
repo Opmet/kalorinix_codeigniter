@@ -10,12 +10,49 @@ var parant_json = 0;
 function Database(){
 	
 	/**
-	 * Lägger till en ny post i databasen eller omdirigerar till ny webbsida vid fel.
+	 * Kontrollerar om webbläsaren stödjer IndexedDB. 
+	 * Metoden omdirigerar till ny webbsida vid fel.
+	 * Metoden körs i header.php
 	 * @param webbsidan.
 	 */
-	this.update = function(p_replace_path) {
-		var db = null;
+	this.indexedDB = function(p_replace_path) {
 		var path = p_replace_path;
+		
+		//Kontrollerar om webbläsaren stödjer IndexedDB.
+		if(!window.indexedDB){
+			window.location.replace( path ); //Om IndexedDB inte stöds omdirigeras till ny webbsida. 
+    	}
+	};
+	
+	/**
+	 * Initierar table databas.
+	 */
+	this.initTable = function() {
+		
+		//Öppna databasen.
+		var table = indexedDB.open("table");
+		
+		// Om databasen inte redan finns skapa objekt och index.
+		table.onupgradeneeded = function() {
+			db = table.result;
+			var store = db.createObjectStore("date", {keyPath: "id", autoIncrement: true});
+			var titleIndex = store.createIndex("by_item", "item");
+			var timeIndex = store.createIndex("by_time", "time");
+			var calorieIndex = store.createIndex("by_calorie", "calorie");
+			var dayIndex = store.createIndex("by_day", "day");
+			};
+			
+		// Om databas uppkopplingen lyckades.
+		table.onsuccess = function() {
+			return true;
+			};
+	};
+	
+	/**
+	 * Lägger till en ny post i databasen.
+	 */
+	this.updateDB = function() {
+		var db = null;
 		
 		var id = $('#hiddenID').text();
 		var json = parant_json;
@@ -26,23 +63,8 @@ function Database(){
 		var toDay = d.getFullYear() + '-' + ('0' + d.getMonth() ).slice(-2) + '-' + ('0' + d.getDate() ).slice(-2);
 		var timeNow = ('0' + d.getHours() ).slice(-2) + ':' + ('0' + d.getMinutes() ).slice(-2); 
 		
-		//Kontrollerar om webbläsaren stödjer IndexedDB.
-		if(!window.indexedDB){
-			window.location.replace( path ); //Om IndexedDB inte stöds omdirigeras till ny webbsida. 
-    	}
-		
-		//Skriv till databasen.
+		//Öppna databasen.
 		var request = indexedDB.open("table");
-		
-		// The database did not previously exist, so create object stores and indexes.
-		request.onupgradeneeded = function() {
-			db = request.result;
-			var store = db.createObjectStore("date", {keyPath: "id", autoIncrement: true});
-			var titleIndex = store.createIndex("by_item", "item");
-			var timeIndex = store.createIndex("by_time", "time");
-			var calorieIndex = store.createIndex("by_calorie", "calorie");
-			var dayIndex = store.createIndex("by_day", "day");
-			};
 			
 		request.onsuccess = function() {
 			db = request.result;
@@ -54,9 +76,42 @@ function Database(){
 
 			tx.oncomplete = function() {
 			  // All requests have succeeded and the transaction has committed.
-				alert("Klart: " + db);
+				alert("Klart2: " + db);
 				};
 			};
+	};
+	
+	/**
+	 * Uppdaterar/Skriver om tabellen table.
+	 * Ex:  database.updateTable(); uppdaterar table.
+	 */
+	this.updateTable = function() {
+		var db = null;
+		
+		//Öppna databasen.
+		   var table = indexedDB.open("table");
+			
+		   // Om databas uppkopplingen lyckades.
+		   table.onsuccess = function() {
+			   db = table.result;
+			   alert("Klart!!!!" + JSON.stringify(db) );
+			   
+			   
+			    var tx = db.transaction("date", "readonly");
+		    	var store = tx.objectStore("date");
+		    	var index = store.index("by_item");
+
+		    	var request = index.get("Gurka");
+				
+				request.onsuccess = function(event) { 
+					alert("Rätt!: ");
+					
+					};
+				
+		        request.onerror = function(event) { 
+		        	alert("Fel!: ");
+		        	};
+			   };
 	};
 	
 	/**

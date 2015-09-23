@@ -24,10 +24,21 @@
     <link href="<?php echo base_url();?>css/main.css" rel="stylesheet">
     
     <!-- Eget javascript -->
-    <script type="text/javascript" src="<?php echo base_url();?>js/main.js" ></script> 
+    <script type="text/javascript" src="<?php echo base_url();?>js/main.js" ></script>
+    <script>
+       //Initierar databaser på klientsidan.
+       var db = new Database();
+
+       //Kontrollerar om webbläsaren stödjer IndexedDB.
+       var replace_path = "<?php echo site_url('welcome/not_supported'); ?>";
+       db.indexedDB(replace_path);
+
+       //Initierar table databas.
+       db.initTable();
+    </script>
   </head>
 <body>
-    
+
 <!-- Navigation header -->
 <nav class="navbar navbar-default">
   <div class="container">
