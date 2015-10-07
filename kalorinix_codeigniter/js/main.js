@@ -58,10 +58,10 @@ function Database(){
 		var json = parant_json;
 		var product = find_product(id, json);
 		
-		//Timmar och minuter med format 09:01. Idag med format 2015-09-16. 
-		var d = new Date();
-		var toDay = d.getFullYear() + '-' + ('0' + d.getMonth() ).slice(-2) + '-' + ('0' + d.getDate() ).slice(-2);
-		var timeNow = ('0' + d.getHours() ).slice(-2) + ':' + ('0' + d.getMinutes() ).slice(-2); 
+		//Hämta timmar och minuter med format 09:01. Idag med format 2015-09-16. 
+		var time = new Time();
+		var toDay = time.getToDay();
+		var timeNow = time.getTimeNow(); 
 		
 		//Öppna databasen.
 		var request = indexedDB.open("table");
@@ -85,8 +85,12 @@ function Database(){
 	 * Uppdaterar/Skriver om tabellen table.
 	 * Ex:  database.updateTable(); uppdaterar table.
 	 */
-	this.updateTable = function() {
+	this.updateTable = function(p_d) {
 		var db = null;
+		this.d = p_d;
+		
+		var i = 0;
+		alert("Tid: " + this.d);
 		
 		//Öppna databasen.
 		   var table = indexedDB.open("table");
@@ -95,16 +99,31 @@ function Database(){
 		   table.onsuccess = function() {
 			   db = table.result;
 			   alert("Klart!!!!" + JSON.stringify(db) );
+			   //by_day = ; //Hämta dagen från dagboken.
 			   
 			   
 			    var tx = db.transaction("date", "readonly");
 		    	var store = tx.objectStore("date");
-		    	var index = store.index("by_item");
+		    	var index = store.index("by_day");
 
-		    	var request = index.get("Gurka");
+		    	var request = index.openCursor(IDBKeyRange.only("2015-08-18"));
 				
 				request.onsuccess = function(event) { 
-					alert("Rätt!: ");
+					var cursor = request.result;
+					
+					
+					if (cursor) {
+					    // Called for each matching record.
+						alert("Rätt" + i + ": " + cursor.value.item);
+						 ++i;
+					    //report(cursor.value.isbn, cursor.value.title, cursor.value.author);
+					    cursor.continue();
+					  } else {
+					    // No more matching records.
+					    //report(null);
+					  }
+					
+					
 					
 					};
 				

@@ -1,18 +1,37 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <script>
+   var table = new Database();
+
+   //Uppdatera tabellen vid körning med dagens datum. 
+   var time = new Time();
+   var toDay = time.getToDay(); //Idag med format 2015-09-16.
+   table.updateTable( toDay );
+
    var path = "<?php echo site_url('welcome/find_food'); ?>";
    var counter = new CalorieCounter( path );
 
-   //Initierar datapicker.
+   //Initierar datapicker och uppdaterar tabellen.
    $(function() {
+	   
 		  $( "#datepicker" ).datepicker({
 		      showWeek: true,
-		      showAnim: "fold"
+		      showAnim: "fold",
+		      onSelect: function() //uppdaterar tabellen vid action.
+		       { 
+		           var date = $(this).datepicker('getDate'); //Hämta dag.
+
+		           //Formaterar om datum till format 2015-09-16.
+		           var time = new Time();
+		           var day = time.getDay(date); //Idag med format 2015-09-16.
+		           table.updateTable(day);
+		       }
 		    });
 
 		  $("#datepicker").datepicker("setDate", new Date()); //Dagens datum
 		  $("#datepicker").datepicker( $.datepicker.regional[ "sv" ] ); //Svenska
 	  });
+
+	  
 </script>
 <h2>Välkommen till KaloriNix!</h2>
 

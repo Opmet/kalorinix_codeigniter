@@ -25,6 +25,7 @@
     
     <!-- Eget javascript -->
     <script type="text/javascript" src="<?php echo base_url();?>js/main.js" ></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/time.js" ></script>
     <script>
        //Initierar databaser på klientsidan.
        var db = new Database();
