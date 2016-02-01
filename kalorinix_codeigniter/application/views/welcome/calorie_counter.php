@@ -10,7 +10,7 @@
    var path = "<?php echo site_url('welcome/find_food'); ?>";
    var counter = new CalorieCounter( path );
 
-   //Initierar datapicker och uppdaterar tabellen.
+   //Initierar datapicker och uppdaterar tabellen table.
    $(function() {
 	   
 		  $( "#datepicker" ).datepicker({

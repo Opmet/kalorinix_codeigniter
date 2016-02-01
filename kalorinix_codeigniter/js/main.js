@@ -10,7 +10,7 @@ var parant_json = 0;
 function Database(){
 	
 	/**
-	 * Kontrollerar om webbläsaren stödjer IndexedDB. 
+	 * Kontrollera om webbläsaren stödjer IndexedDB. 
 	 * Metoden omdirigerar till ny webbsida vid fel.
 	 * Metoden körs i header.php
 	 * @param webbsidan.
@@ -25,7 +25,7 @@ function Database(){
 	};
 	
 	/**
-	 * Initierar table databas.
+	 * Starta table databas.
 	 */
 	this.initTable = function() {
 		
@@ -82,35 +82,31 @@ function Database(){
 	};
 	
 	/**
-	 * Uppdaterar/Skriver om tabellen table.
+	 * Uppdaterar tabellen table.
 	 * Ex:  database.updateTable(); uppdaterar table.
 	 */
-	this.updateTable = function(p_d) {
+	this.updateTable = function(p_day) {
 		var db = null;
-		this.d = p_d;
+		var day = p_day;
 		
 		var i = 0;
-		alert("Tid: " + this.d);
+		alert("Tid: " + day);
 		
 		//Öppna databasen.
 		   var table = indexedDB.open("table");
 			
 		   // Om databas uppkopplingen lyckades.
 		   table.onsuccess = function() {
-			   db = table.result;
-			   alert("Klart!!!!" + JSON.stringify(db) );
-			   //by_day = ; //Hämta dagen från dagboken.
-			   
+			   db = table.result;			   
 			   
 			    var tx = db.transaction("date", "readonly");
 		    	var store = tx.objectStore("date");
 		    	var index = store.index("by_day");
 
-		    	var request = index.openCursor(IDBKeyRange.only("2015-08-18"));
+		    	var request = index.openCursor(IDBKeyRange.only( day ));
 				
 				request.onsuccess = function(event) { 
 					var cursor = request.result;
-					
 					
 					if (cursor) {
 					    // Called for each matching record.
@@ -121,15 +117,9 @@ function Database(){
 					  } else {
 					    // No more matching records.
 					    //report(null);
+						  alert("Tomt: " + day);
 					  }
-					
-					
-					
 					};
-				
-		        request.onerror = function(event) { 
-		        	alert("Fel!: ");
-		        	};
 			   };
 	};
 	

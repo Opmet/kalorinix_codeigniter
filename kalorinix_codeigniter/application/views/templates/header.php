@@ -10,6 +10,9 @@
     <meta name="author" content="Joakim Andersson" />
     <title>KaloriNix</title>
     
+    <!-- angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -27,15 +30,18 @@
     <script type="text/javascript" src="<?php echo base_url();?>js/main.js" ></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/time.js" ></script>
     <script>
-       //Initierar databaser på klientsidan.
-       var db = new Database();
+       var app = angular.module('initApp', []);
+       app.controller('initCtrl', function($scope) {
+           //Initierar databaserna.
+           var db = new Database();
 
-       //Kontrollerar om webbläsaren stödjer IndexedDB.
-       var replace_path = "<?php echo site_url('welcome/not_supported'); ?>";
-       db.indexedDB(replace_path);
+           //1:Kontrollera om webbläsaren stödjer IndexedDB.
+           var replace_path = "<?php echo site_url('welcome/not_supported'); ?>";
+           db.indexedDB(replace_path);
 
-       //Initierar table databas.
-       db.initTable();
+           //2:Starta table databas.
+           db.initTable();
+       });
     </script>
   </head>
 <body>
